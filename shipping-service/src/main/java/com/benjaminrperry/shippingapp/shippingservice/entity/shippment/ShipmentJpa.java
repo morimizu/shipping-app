@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Builder
 @AllArgsConstructor
@@ -22,6 +24,9 @@ public class ShipmentJpa implements Shipment {
 
     @Column(name = "totalVolume")
     private Double totalVolume;
+
+    @OneToMany(mappedBy = "shipmentId")
+    private List<ShipmentItemJpa> shipmentItems;
 
     @Override
     public Long getId() {
@@ -49,12 +54,13 @@ public class ShipmentJpa implements Shipment {
     }
 
     @Override
-    public void addProduct(Product product) {
-        return;
+    public void addItem(Product product, Integer qty) {
+
     }
 
     @Override
-    public void removeProduct(Product product) {
+    public void removeItem(String productNumber) {
 
     }
+
 }

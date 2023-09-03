@@ -5,5 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ShipmentDTO {
+public class AddShipmentItemDTO {
+    private String productNumber;
+    private Integer qty;
 }

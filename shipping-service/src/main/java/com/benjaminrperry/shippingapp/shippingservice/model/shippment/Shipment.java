@@ -12,8 +12,4 @@ public interface Shipment {
     Double getTotalVolume();
 
     void setTotalVolume(Double totalVolume);
-
-    void addProduct(Product product);
-
-    void removeProduct(Product product);
 }
