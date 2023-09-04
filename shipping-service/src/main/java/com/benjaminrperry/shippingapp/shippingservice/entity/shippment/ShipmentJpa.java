@@ -2,10 +2,13 @@ package com.benjaminrperry.shippingapp.shippingservice.entity.shippment;
 
 import com.benjaminrperry.shippingapp.shippingservice.model.product.Product;
 import com.benjaminrperry.shippingapp.shippingservice.model.shippment.Shipment;
+import com.benjaminrperry.shippingapp.shippingservice.model.shippment.ShipmentItem;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Builder
@@ -18,10 +21,13 @@ public class ShipmentJpa implements Shipment {
     private Long id;
 
     @Column(name = "totalWeight")
-    private Double totalWeight;
+    private Double totalWeight = 0d;
 
     @Column(name = "totalVolume")
-    private Double totalVolume;
+    private Double totalVolume = 0d;
+
+    @OneToMany(mappedBy = "shipmentId")
+    private List<ShipmentItemJpa> shipmentItems;
 
     @Override
     public Long getId() {
@@ -49,12 +55,12 @@ public class ShipmentJpa implements Shipment {
     }
 
     @Override
-    public void addProduct(Product product) {
-        return;
+    public void setShipmentItems(List<ShipmentItem> shipmentItems) {
+        this.shipmentItems = shipmentItems.stream().map((item) -> (ShipmentItemJpa) item).toList();
     }
 
     @Override
-    public void removeProduct(Product product) {
-
+    public List<ShipmentItem> getShipmentItems() {
+        return this.shipmentItems.stream().map((item) -> (ShipmentItem) item).toList();
     }
 }

@@ -5,9 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ProductDTO {
+public class AddShipmentItemDTO {
     private String productNumber;
-    private String description;
-    private Double unitWeight;
-    private Double unitVolume;
+    private Integer qty;
 }
