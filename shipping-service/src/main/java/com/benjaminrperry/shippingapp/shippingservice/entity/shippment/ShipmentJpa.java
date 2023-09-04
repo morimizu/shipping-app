@@ -2,6 +2,7 @@ package com.benjaminrperry.shippingapp.shippingservice.entity.shippment;
 
 import com.benjaminrperry.shippingapp.shippingservice.model.product.Product;
 import com.benjaminrperry.shippingapp.shippingservice.model.shippment.Shipment;
+import com.benjaminrperry.shippingapp.shippingservice.model.shippment.ShipmentItem;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +21,10 @@ public class ShipmentJpa implements Shipment {
     private Long id;
 
     @Column(name = "totalWeight")
-    private Double totalWeight;
+    private Double totalWeight = 0d;
 
     @Column(name = "totalVolume")
-    private Double totalVolume;
+    private Double totalVolume = 0d;
 
     @OneToMany(mappedBy = "shipmentId")
     private List<ShipmentItemJpa> shipmentItems;
@@ -54,13 +55,12 @@ public class ShipmentJpa implements Shipment {
     }
 
     @Override
-    public void addItem(Product product, Integer qty) {
-
+    public void setShipmentItems(List<ShipmentItem> shipmentItems) {
+        this.shipmentItems = shipmentItems.stream().map((item) -> (ShipmentItemJpa) item).toList();
     }
 
     @Override
-    public void removeItem(String productNumber) {
-
+    public List<ShipmentItem> getShipmentItems() {
+        return this.shipmentItems.stream().map((item) -> (ShipmentItem) item).toList();
     }
-
 }

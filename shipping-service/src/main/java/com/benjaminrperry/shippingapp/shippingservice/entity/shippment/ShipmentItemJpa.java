@@ -14,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 public class ShipmentItemJpa implements ShipmentItem {
     @Id
-    @Column(name = "shipment_id")
+    @JoinColumn(name = "shipment_id")
     @ManyToOne(targetEntity = ShipmentJpa.class)
     private Long shipmentId;
     @Id

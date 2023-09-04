@@ -11,10 +11,13 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class ShipmentItemRepositoryImpl implements ShipmentItemRepository {
-    private ShipmentItemJpaRepository shipmentItemJpaRepository;
+    private final ShipmentItemJpaRepository shipmentItemJpaRepository;
     @Override
     public List<ShipmentItem> getShipmentItems(Long shipmentId) {
-        return shipmentItemJpaRepository.findByShipmentId(shipmentId);
+        return shipmentItemJpaRepository.findAll().stream()
+                .filter(shipmentItemJpa -> shipmentItemJpa.getShipmentId().equals(shipmentId))
+                .map(item -> (ShipmentItem) item)
+                .toList();
     }
 
     @Override
