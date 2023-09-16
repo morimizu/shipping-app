@@ -1,5 +1,6 @@
 package com.benjaminrperry.shippingapp.shippingservice.entity.shippment;
 
+import com.benjaminrperry.shippingapp.shippingservice.model.shippment.Shipment;
 import com.benjaminrperry.shippingapp.shippingservice.model.shippment.ShipmentItem;
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,10 +14,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShipmentItemJpa implements ShipmentItem {
-    @Id
     @JoinColumn(name = "shipment_id")
     @ManyToOne(targetEntity = ShipmentJpa.class)
-    private Long shipmentId;
+    private Shipment shipment;
     @Id
     @Column(name = "product_number")
     private String productNumber;
@@ -27,4 +27,9 @@ public class ShipmentItemJpa implements ShipmentItem {
     @Column(name = "volume")
     private Double volume;
 
+    @Override
+    @Id
+    public Long getShipmentId() {
+        return this.shipment.getId();
+    }
 }

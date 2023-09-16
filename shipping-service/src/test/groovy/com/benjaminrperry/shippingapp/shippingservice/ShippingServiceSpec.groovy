@@ -37,6 +37,25 @@ class ShippingServiceSpec extends Specification {
         shipment.totalVolume == 6
     }
 
+    def 'can get shipment'(){
+        given:
+        def dto = CreateShipmentDTO.builder()
+                .shipmentItems([
+                        AddShipmentItemDTO.builder()
+                                .productNumber("ABC1234")
+                                .qty(3)
+                                .build()
+                ])
+                .build()
+        def shipment = shipmentService.createShipment(dto)
+
+        when:
+        def result = shipmentService.getShipment(shipment.id)
+
+        then:
+        result == shipment
+    }
+
     def product(productNumber,weight,volume) {
         return ProductDTO.builder()
                 .productNumber(productNumber)
