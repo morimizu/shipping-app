@@ -26,7 +26,7 @@ public class ShipmentJpa implements Shipment {
     @Column(name = "totalVolume")
     private Double totalVolume = 0d;
 
-    @OneToMany(mappedBy = "shipmentId")
+    @OneToMany(targetEntity = ShipmentItemJpa.class ,mappedBy = "shipmentId")
     private List<ShipmentItemJpa> shipmentItems;
 
     @Override
