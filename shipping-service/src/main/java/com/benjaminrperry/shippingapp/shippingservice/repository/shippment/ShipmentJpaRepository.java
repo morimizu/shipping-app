@@ -4,7 +4,6 @@ import com.benjaminrperry.shippingapp.shippingservice.entity.shippment.ShipmentJ
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ShipmentJpaRepository extends JpaRepository<ShipmentJpa, Long> {
 
+public interface ShipmentJpaRepository extends JpaRepository<ShipmentJpa, Long> {
 }

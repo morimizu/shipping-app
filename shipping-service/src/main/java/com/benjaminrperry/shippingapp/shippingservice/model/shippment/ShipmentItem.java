@@ -1,7 +1,9 @@
 package com.benjaminrperry.shippingapp.shippingservice.model.shippment;
 
 public interface ShipmentItem {
+    Long getId();
     Long getShipmentId();
+    void setShipmentId(Long shipmentId);
     String getProductNumber();
     void setProductNumber(String productNumber);
     Integer getQty();

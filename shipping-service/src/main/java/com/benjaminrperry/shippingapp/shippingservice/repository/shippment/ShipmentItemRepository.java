@@ -11,7 +11,7 @@ public interface ShipmentItemRepository {
 
     ShipmentItem save(ShipmentItem shipmentItem);
 
-    void delete(Long shipmentId, String productId);
+    void delete(Long shipmentItemId);
 
     ShipmentItem newInstance();
 }

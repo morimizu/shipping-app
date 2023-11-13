@@ -1,7 +1,7 @@
 package com.benjaminrperry.shippingapp.shippingservice.controller.shippment;
 
-import com.benjaminrperry.shippingapp.shippingservice.dto.CreateShipmentDTO;
-import com.benjaminrperry.shippingapp.shippingservice.dto.ShipmentDTO;
+import com.benjaminrperry.shippingapp.shippingservice.client.dto.CreateShipmentDTO;
+import com.benjaminrperry.shippingapp.shippingservice.client.dto.ShipmentDTO;
 import com.benjaminrperry.shippingapp.shippingservice.service.shippment.ShipmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
