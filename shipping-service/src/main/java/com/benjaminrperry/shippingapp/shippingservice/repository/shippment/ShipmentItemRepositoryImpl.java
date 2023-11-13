@@ -14,16 +14,15 @@ public class ShipmentItemRepositoryImpl implements ShipmentItemRepository {
     private final ShipmentItemJpaRepository shipmentItemJpaRepository;
     @Override
     public List<ShipmentItem> getShipmentItems(Long shipmentId) {
-        return shipmentItemJpaRepository.findAll().stream()
-                .filter(shipmentItemJpa -> shipmentItemJpa.getShipmentId().equals(shipmentId))
-                .map(item -> (ShipmentItem) item)
+        return shipmentItemJpaRepository.findByShipmentId(shipmentId).stream()
+                .map(ShipmentItem.class::cast)
                 .toList();
     }
 
     @Override
     public ShipmentItem getShipmentItem(Long shipmentId, String productNumber) {
         return shipmentItemJpaRepository
-                .findById(new ShipmentItemPrimaryKey(shipmentId,productNumber))
+                .findByShipmentIdAndProductNumber(shipmentId, productNumber)
                 .orElseThrow(() -> new RuntimeException("shipment item doesn't exist"));
     }
 
@@ -33,8 +32,8 @@ public class ShipmentItemRepositoryImpl implements ShipmentItemRepository {
     }
 
     @Override
-    public void delete(Long shipmentId, String productId) {
-        shipmentItemJpaRepository.deleteById(new ShipmentItemPrimaryKey(shipmentId,productId));
+    public void delete(Long shipmentItemId) {
+        shipmentItemJpaRepository.deleteById(shipmentItemId);
     }
 
     @Override

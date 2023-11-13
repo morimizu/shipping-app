@@ -1,9 +1,9 @@
 package com.benjaminrperry.shippingapp.shippingservice.service.shippment;
 
-import com.benjaminrperry.shippingapp.shippingservice.dto.AddShipmentItemDTO;
-import com.benjaminrperry.shippingapp.shippingservice.dto.CreateShipmentDTO;
-import com.benjaminrperry.shippingapp.shippingservice.dto.ProductDTO;
-import com.benjaminrperry.shippingapp.shippingservice.dto.ShipmentDTO;
+import com.benjaminrperry.shippingapp.shippingservice.client.dto.AddShipmentItemDTO;
+import com.benjaminrperry.shippingapp.shippingservice.client.dto.CreateShipmentDTO;
+import com.benjaminrperry.shippingapp.shippingservice.client.dto.ProductDTO;
+import com.benjaminrperry.shippingapp.shippingservice.client.dto.ShipmentDTO;
 import com.benjaminrperry.shippingapp.shippingservice.client.product.ProductClient;
 import com.benjaminrperry.shippingapp.shippingservice.model.shippment.Shipment;
 import com.benjaminrperry.shippingapp.shippingservice.model.shippment.ShipmentItem;

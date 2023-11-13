@@ -26,8 +26,8 @@ public class ShipmentJpa implements Shipment {
     @Column(name = "totalVolume")
     private Double totalVolume = 0d;
 
-    @OneToMany(targetEntity = ShipmentItemJpa.class ,mappedBy = "shipmentId")
-    private List<ShipmentItemJpa> shipmentItems;
+    @OneToMany(targetEntity = ShipmentItemJpa.class)
+    private List<ShipmentItem> shipmentItems;
 
     @Override
     public Long getId() {
@@ -56,11 +56,13 @@ public class ShipmentJpa implements Shipment {
 
     @Override
     public void setShipmentItems(List<ShipmentItem> shipmentItems) {
-        this.shipmentItems = shipmentItems.stream().map((item) -> (ShipmentItemJpa) item).toList();
+        this.shipmentItems = shipmentItems.stream()
+                .peek(item -> item.setShipmentId(this.id))
+                .toList();
     }
 
     @Override
     public List<ShipmentItem> getShipmentItems() {
-        return this.shipmentItems.stream().map((item) -> (ShipmentItem) item).toList();
+        return this.shipmentItems;
     }
 }
